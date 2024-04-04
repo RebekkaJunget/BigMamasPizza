@@ -12,17 +12,17 @@ namespace BigMamasPizza
         #region Instens Fields
         private int _pizzaId;
         private string _pizzaName;
-        private List<string> _toppings;
+       
         private int _price;
         
         #endregion
 
         #region Constructor
-        public Pizza(int pizzaId, string pizzaName,List<string> toppings, int price)
+        public Pizza(int pizzaId, string pizzaName, int price)
         {
             _pizzaId = pizzaId;
             _pizzaName = pizzaName;
-            _toppings = toppings;
+           
             _price = price;
            
         }
@@ -41,27 +41,40 @@ namespace BigMamasPizza
             set { _pizzaName = value; }
 
         }
-        public List<string> Toppings
-        {
-            get { return _toppings; }
-            set { _toppings = value; }
-        }
+       
 
         public int Price
         {
             get { return _price; }
             set { _price = value; }
         }
-     
-     
-       
+
+
+
         #endregion
-       
+
+        private Dictionary<int, Pizza> pizzas { get; }
+        public Pizza()
+        {
+            pizzas = new Dictionary<int, Pizza>();
+
+            new Pizza(1, "Cheese_pizza", 98);
+            new Pizza(2, "Bufalla_pizza", 59);
+            new Pizza(3, "Chicken_pizza", 120);
+            new Pizza(4, "Mozzarella_pizza", 77);
+            new Pizza(5, "Vegetable_pizza", 88);
+        }
+
+        public Dictionary<int, Pizza> AllPizzas()
+        {
+            return pizzas;
+        }
+
         #region Method
-            
+
         public override string ToString()
         {
-            return $"{_pizzaId} - {_pizzaName} - Topping: {string.Join(",", Toppings)}, $Price: {_price}";
+            return $"{_pizzaId} - {_pizzaName} - $Price: {_price}";
         }
   
         #endregion

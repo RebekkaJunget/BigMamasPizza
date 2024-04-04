@@ -8,85 +8,86 @@ namespace BigMamasPizza
 {
     public class MenuCatalog
     {
-        #region Instans Fields
-         private List<Pizza> _menu;
+
+        private List<Pizza> _pizzaMenu = new List<Pizza>();
 
 
-      public MenuCatalog() 
+      
+        public List<Pizza> PizzaMenu
         {
-            _menu = new List<Pizza>(); 
-        }
-        #endregion
-
-
-
-        public void AddPizza(Pizza pizza)
-        {
-
-            _menu.Add (pizza);
-          
+            get { return _pizzaMenu; }
         }
 
+        // Methods for CRUD operations
+
+        //Create
+        public void AddPizza(int pizzaId, string pizzaName, int price)
+        {
+            Pizza p = new Pizza(pizzaId, pizzaName, price);
+            _pizzaMenu.Add(p);
+
+        
+        }
+
+
+        //Read
+        public void ReadInput()
+        {
+            int x;
+            Console.WriteLine("Enter the pizza number");
+            x = Console.Read();
+            Console.WriteLine(x);
+
+            Console.WriteLine(Convert.ToString(x));
+
+        }
+
+        //Delete
         public void DeletePizza(string _pizzaName)
         {
             bool found = false;
             int index = 0;
-            while (found == false && index <= _menu.Count -1 ) 
+            while (found == false && index <= PizzaMenu.Count - 1)
             {
-                if (_menu[index].PizzaName.Equals(_pizzaName))
+                if (PizzaMenu[index].PizzaName.Equals(_pizzaName))
                 {
                     found = true;
-                    _menu.RemoveAt (index);
+                    PizzaMenu.RemoveAt(index);
                 }
                 index++;
             }
-            
+
         }
 
+
+        
+        //Update
         public void UpdatePizza(string _pizzaName, int _price)
 
         {
             bool found = false;
             int index = 0;
-            while (found == false && index <= _menu.Count -1 ) 
+            while (found == false && index <= PizzaMenu.Count -1 ) 
             { 
-                if (_menu[index].PizzaName.Equals(_pizzaName))
+                if (PizzaMenu[index].PizzaName.Equals(_pizzaName))
                     
                 { 
                     found = true;
-                    _menu[index].Price = _price;
+                    PizzaMenu[index].Price = _price;
                    
                 }
                 index++;
             }
-        }
-
-    
-        public Pizza SearchPizza(string _searchWord) 
-        {
-            bool found = false;
-            int index = 0;
-            Pizza foundPizza = null;
-            while (found == false && index <= _menu.Count -1)
-            {
-                if (_menu[index].PizzaName.Equals (_searchWord))
-                {
-                    found = true;
-                    foundPizza = _menu[index];
-                }
-                index++;
-            }
             if (found == false) throw new PizzaNotFoundException();
-            return foundPizza;
-         
+           
         }
-        
 
+        //Print
         public void PrintMenu()
 
         {
             Console.WriteLine("Menu");
-            foreach (var pizza in _menu)
+            foreach (var pizza in PizzaMenu)
             {
                 Console.WriteLine(pizza);
             }
@@ -95,7 +96,27 @@ namespace BigMamasPizza
 
         }
 
-       
 
+        //Search
+        public Pizza SearchPizza(string _searchWord) 
+        {
+            bool found = false;
+            int index = 0;
+            Pizza foundPizza = null;
+            while (found == false && index <= PizzaMenu.Count -1)
+            {
+                if (PizzaMenu[index].PizzaName.Equals (_searchWord))
+                {
+                    found = true;
+                    foundPizza = PizzaMenu[index];
+                }
+                index++;
+            }
+            if (found == false) throw new PizzaNotFoundException();
+            return foundPizza;
+         
+        }
+
+       
     }
 }

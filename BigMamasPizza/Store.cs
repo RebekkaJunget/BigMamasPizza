@@ -10,7 +10,6 @@ namespace BigMamasPizza
 {
     public class Store
     {
-
         private string _name;
 
         private MenuCatalog menuCatalog;
@@ -20,7 +19,7 @@ namespace BigMamasPizza
             menuCatalog = new MenuCatalog();
         }
 
-        public string Name { get => _name; set => _name = value; }
+       
 
         public int TestMethods()
 
@@ -96,8 +95,6 @@ namespace BigMamasPizza
 
                     Console.WriteLine(" You selected:     " + menu[2 - 1]);
                     Console.Clear();
-                    menuCatalog.ReadInput();
-
                     menuCatalog.DeletePizza("Pepperoni");
 
                     Console.WriteLine("Deleted Pepperoni");
@@ -109,7 +106,7 @@ namespace BigMamasPizza
                 case 3:
                     Console.WriteLine(" You selected:    " + menu[3 - 1]);
                     Console.Clear();
-                    var pizzaUpdate = new Pizza();
+                   
                     menuCatalog.UpdatePizza("Vegetarian", 70);
 
                     Console.WriteLine("Number 3 was updated on price : Before 60kr. ,Efter 70kr.");

@@ -11,6 +11,8 @@ namespace BigMamasPizza
     public class Store
     {
 
+        private string _name;
+
         private MenuCatalog menuCatalog;
 
         public Store()
@@ -18,7 +20,7 @@ namespace BigMamasPizza
             menuCatalog = new MenuCatalog();
         }
 
-       
+        public string Name { get => _name; set => _name = value; }
 
         public int TestMethods()
 
@@ -94,6 +96,8 @@ namespace BigMamasPizza
 
                     Console.WriteLine(" You selected:     " + menu[2 - 1]);
                     Console.Clear();
+                    menuCatalog.ReadInput();
+
                     menuCatalog.DeletePizza("Pepperoni");
 
                     Console.WriteLine("Deleted Pepperoni");
